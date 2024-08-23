@@ -24,5 +24,18 @@ public class Pedido
     public string Obs {get;set;}
     public cliente Cliente {get;set;}
     public state Estado; 
+
+    public Pedido(int num, string obs, cliente cliente, state estado){
+        NumPedidO=num;
+        Obs=obs;
+        Cliente=cliente;
+        Estado = estado;
+    }
+    public string VerDireccionCliente(){
+        return Cliente.Direccion;
+    }
+    public string VerDatosCliente(){
+        return $"{Cliente.Nombre}, {Cliente.Telefono}, {Cliente.Direccion}";
+    }
 }
 
