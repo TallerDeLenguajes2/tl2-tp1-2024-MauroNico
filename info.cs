@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 
 enum state {recibido, preparandose, en camino, recibido};
-public class cliente
+class cliente
 {
-    private string Nombre {get;set;}
-    private string Direccion {get;set;}
-    private string Telefono {get;set;}
-    private string Datosreferenciadireccion {get;set;}
+    public string Nombre {get;set;}
+    public string Direccion {get;set;}
+    public string Telefono {get;set;}
+    public string Datosreferenciadireccion {get;set;}
 
     public cliente(string nombre, string direccion, string telefono, string datosreferencia){
         Nombre = nombre;
@@ -20,9 +20,9 @@ public class cliente
 
 public class Pedido
 {
-    private int NumPedidO {get;set;}
-    private string Obs {get;set;}
-    private cliente Cliente {get;set;}
-    private state Estado; 
+    public int NumPedidO {get;set;}
+    public string Obs {get;set;}
+    public cliente Cliente {get;set;}
+    public state Estado; 
 }
 
