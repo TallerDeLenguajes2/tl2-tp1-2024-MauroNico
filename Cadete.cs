@@ -22,7 +22,7 @@ class Cadete
 
     public int JornalACobrar()
     {
-        int pedidosEntregados = ListadoPedidos.FindAll(p => p.estado == entregado).Count;
+        int pedidosEntregados = ListadoPedidos.FindAll(p => p.estado == State.entregado).Count();
         return pedidosEntregados * 500;
     }
 }

@@ -2,13 +2,13 @@ class Cadeteria
 {
     public string Nombre { get; set; }
     public string Telefono { get; set; }
-    public List<Cadete> ListadoCadetes { get; set; }
+    public List<Cadete> listadoCadetes { get; set; }
 
     public Cadeteria(string nombre, string telefono)
     {
         Nombre = nombre;
         Telefono = telefono;
-        listaCadetes = new List<Cadete>();
+        listadoCadetes = new List<Cadete>();
     }
 
     public void CargarCSV(string archivoCSV)
@@ -22,7 +22,7 @@ class Cadeteria
                 var values = line.Split(',');
 
                 Cadete cadete = new Cadete(int.Parse(values[0]), values[1], values[2], values[3]);
-                listaCadetes.Add(cadete);
+                listadoCadetes.Add(cadete);
             }
         }
     }
