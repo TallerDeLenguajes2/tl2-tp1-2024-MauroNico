@@ -1,17 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json;
 using System.Linq;
+
 
 public class Program {
     static void Main() {
         Cadeteria cadeteria = new Cadeteria();
+        AccesoADatos accesoDatos;
 
-        
-        cadeteria.CargarDatosCadeteria("cadeteria.csv");
-        cadeteria.CargarCadetes("cadetes.csv");
+        // Solicitar tipo de acceso a datos (CSV o JSON)
+        Console.WriteLine("Seleccione el tipo de acceso a datos:");
+        Console.WriteLine("1. CSV");
+        Console.WriteLine("2. JSON");
+        Console.Write("Opción: ");
+        string opcionAcceso = Console.ReadLine();
 
-        
+        switch (opcionAcceso) {
+            case "1":
+                accesoDatos = new AccesoCSV();
+                break;
+            case "2":
+                accesoDatos = new AccesoJSON();
+                break;
+            default:
+                Console.WriteLine("Opción no válida. Se utilizará CSV por defecto.");
+                accesoDatos = new AccesoCSV();
+                break;
+        }
+
+        // Cargar datos desde el archivo seleccionado
+        accesoDatos.CargarDatosCadeteria(cadeteria, "cadeteria.csv");
+        accesoDatos.CargarCadetes(cadeteria, "cadetes.csv");
+
+        // Menú de opciones
         bool salir = false;
         while (!salir) {
             Console.WriteLine("\nSistema de Gestión de Pedidos");
@@ -54,14 +77,26 @@ public class Program {
                     break;
 
                 case "3":
-                    Console.Write("Ingrese el número del pedido a cambiar de estado: ");
-                    int nroPedidoEstado = int.Parse(Console.ReadLine());
-                    Console.Write("Ingrese el nuevo estado (Pendiente, Enviado, Entregado): ");
-                    string nuevoEstado = Console.ReadLine();
-
-                    var pedidoEstado = cadeteria.ListadoPedidos.FirstOrDefault(p => p.Nro == nroPedidoEstado);
-                    if (pedidoEstado != null) {
-                        pedidoEstado.Estado = nuevoEstado;
+                    Console.Write("Ingrese el número del pedido para cambiar su estado: ");
+                    int nroPedidoCambiar = int.Parse(Console.ReadLine());
+                    var pedidoCambiar = cadeteria.ListadoPedidos.FirstOrDefault(p => p.Nro == nroPedidoCambiar);
+                    if (pedidoCambiar != null) {
+                        Console.WriteLine("Seleccione el nuevo estado: 1. Pendiente, 2. Enviado, 3. Entregado");
+                        string nuevoEstado = Console.ReadLine();
+                        switch (nuevoEstado) {
+                            case "1":
+                                pedidoCambiar.Estado = "Pendiente";
+                                break;
+                            case "2":
+                                pedidoCambiar.Estado = "Enviado";
+                                break;
+                            case "3":
+                                pedidoCambiar.Estado = "Entregado";
+                                break;
+                            default:
+                                Console.WriteLine("Estado no válido.");
+                                break;
+                        }
                         Console.WriteLine("Estado del pedido actualizado.");
                     } else {
                         Console.WriteLine("Pedido no encontrado.");

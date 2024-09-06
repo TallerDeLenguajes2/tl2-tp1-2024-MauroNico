@@ -1,5 +1,5 @@
 
-// Implementación para el acceso a datos en CSV
+
 public class AccesoCSV : AccesoADatos {
     public override void CargarDatosCadeteria(Cadeteria cadeteria, string archivo) {
         using (StreamReader sr = new StreamReader(archivo)) {

@@ -1,5 +1,4 @@
-
-// Implementación para el acceso a datos en JSON
+using Newtonsoft.Json;
 public class AccesoJSON : AccesoADatos {
     public override void CargarDatosCadeteria(Cadeteria cadeteria, string archivo) {
         var json = File.ReadAllText(archivo);
