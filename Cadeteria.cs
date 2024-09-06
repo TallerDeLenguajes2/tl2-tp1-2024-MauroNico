@@ -9,7 +9,7 @@ public class Cadeteria {
         ListadoPedidos = new List<Pedido>();
     }
 
-    // Método para asignar un cadete a un pedido
+    
     public void AsignarCadeteAPedido(int idCadete, int nroPedido) {
         var cadete = ListaCadetes.FirstOrDefault(c => c.Id == idCadete);
         var pedido = ListadoPedidos.FirstOrDefault(p => p.Nro == nroPedido);
@@ -21,13 +21,13 @@ public class Cadeteria {
         }
     }
 
-    // Método para calcular el jornal de un cadete
+    
     public decimal JornalACobrar(int idCadete) {
         var pedidosEntregados = ListadoPedidos.Where(p => p.Cadete != null && p.Cadete.Id == idCadete && p.Estado == "Entregado").Count();
-        return pedidosEntregados * 500; // $500 por pedido entregado
+        return pedidosEntregados * 500; 
     }
 
-    // Método para generar informe de la jornada
+    
     public void GenerarInforme() {
         Console.WriteLine("\nInforme de la jornada:");
         decimal totalJornal = 0;
