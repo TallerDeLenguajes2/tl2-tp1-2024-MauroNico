@@ -10,7 +10,7 @@ public class Cadete {
     }
 
     public decimal JornalACobrar() {
-        // Asumimos que cada pedido entregado genera un jornal de $500
+        
         return ListadoPedidos.Count(p => p.Estado == "Entregado") * 500;
     }
 }

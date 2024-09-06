@@ -7,11 +7,11 @@ public class Program {
     static void Main() {
         Cadeteria cadeteria = new Cadeteria();
 
-        // Cargar datos desde archivos CSV
+        
         cadeteria.CargarDatosCadeteria("cadeteria.csv");
         cadeteria.CargarCadetes("cadetes.csv");
 
-        // Menú de opciones
+        
         bool salir = false;
         while (!salir) {
             Console.WriteLine("\nSistema de Gestión de Pedidos");

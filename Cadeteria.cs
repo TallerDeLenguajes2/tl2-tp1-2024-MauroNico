@@ -34,7 +34,7 @@ public class Cadeteria {
         }
     }
 
-    // Método para asignar un pedido a un cadete
+    
     public void AsignarPedidoACadete(Pedido pedido, int idCadete) {
         var cadete = ListaCadetes.FirstOrDefault(c => c.Id == idCadete);
         if (cadete != null) {
@@ -46,7 +46,7 @@ public class Cadeteria {
         }
     }
 
-    // Método para reasignar un pedido
+    
     public void ReasignarPedido(int nroPedido, int idNuevoCadete) {
         foreach (var cadete in ListaCadetes) {
             var pedido = cadete.ListadoPedidos.FirstOrDefault(p => p.Nro == nroPedido);
@@ -58,7 +58,7 @@ public class Cadeteria {
         }
     }
 
-    // Método para generar informe de la jornada
+    
     public void GenerarInforme() {
         Console.WriteLine("\nInforme de la jornada:");
         decimal totalJornal = 0;

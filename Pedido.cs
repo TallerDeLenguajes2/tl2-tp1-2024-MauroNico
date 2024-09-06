@@ -2,7 +2,7 @@ public class Pedido {
     public int Nro { get; set; }
     public string Observacion { get; set; }
     public Cliente Cliente { get; set; }
-    public string Estado { get; set; } // Pendiente, Enviado, Entregado
+    public string Estado { get; set; } 
 
     public void VerDireccionCliente() {
         Console.WriteLine($"Dirección del cliente: {Cliente.Direccion}");
