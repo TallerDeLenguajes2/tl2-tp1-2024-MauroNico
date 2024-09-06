@@ -3,52 +3,94 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-public class Program
-{
-    static List<Cadete> CargarCadetesDesdeCSV(string path)
-    {
-        List<Cadete> cadetes = new List<Cadete>();
-        using (var reader = new StreamReader(path))
-        {
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                var values = line.Split(',');
-                cadetes.Add(new Cadete { Id = int.Parse(values[0]), Nombre = values[1], Direccion = values[2], Telefono = values[3] });
+public class Program {
+    static void Main() {
+        Cadeteria cadeteria = new Cadeteria();
+
+        // Cargar datos desde archivos CSV
+        cadeteria.CargarDatosCadeteria("cadeteria.csv");
+        cadeteria.CargarCadetes("cadetes.csv");
+
+        // Menú de opciones
+        bool salir = false;
+        while (!salir) {
+            Console.WriteLine("\nSistema de Gestión de Pedidos");
+            Console.WriteLine("1. Dar de alta un pedido");
+            Console.WriteLine("2. Asignar pedido a cadete");
+            Console.WriteLine("3. Cambiar estado de un pedido");
+            Console.WriteLine("4. Reasignar pedido a otro cadete");
+            Console.WriteLine("5. Mostrar informe al finalizar jornada");
+            Console.WriteLine("6. Salir");
+            Console.Write("Seleccione una opción: ");
+            string opcion = Console.ReadLine();
+
+            switch (opcion) {
+                case "1":
+                    Pedido nuevoPedido = new Pedido();
+                    Console.Write("Ingrese el número del pedido: ");
+                    nuevoPedido.Nro = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese la observación del pedido: ");
+                    nuevoPedido.Observacion = Console.ReadLine();
+                    nuevoPedido.Estado = "Pendiente";
+
+                    nuevoPedido.Cliente = new Cliente();
+                    Console.Write("Ingrese el nombre del cliente: ");
+                    nuevoPedido.Cliente.Nombre = Console.ReadLine();
+                    Console.Write("Ingrese la dirección del cliente: ");
+                    nuevoPedido.Cliente.Direccion = Console.ReadLine();
+                    Console.Write("Ingrese el teléfono del cliente: ");
+                    nuevoPedido.Cliente.Telefono = Console.ReadLine();
+
+                    Console.WriteLine("Pedido creado con éxito.");
+                    break;
+
+                case "2":
+                    Console.Write("Ingrese el número del pedido a asignar: ");
+                    int nroPedidoAsignar = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el ID del cadete a asignar: ");
+                    int idCadeteAsignar = int.Parse(Console.ReadLine());
+
+                    Pedido pedidoAsignar = new Pedido(); // Crear un pedido ficticio para la asignación
+                    pedidoAsignar.Nro = nroPedidoAsignar;
+                    cadeteria.AsignarPedidoACadete(pedidoAsignar, idCadeteAsignar);
+                    break;
+
+                case "3":
+                    Console.Write("Ingrese el número del pedido a cambiar de estado: ");
+                    int nroPedidoEstado = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el nuevo estado (Pendiente, Enviado, Entregado): ");
+                    string nuevoEstado = Console.ReadLine();
+
+                    foreach (var cadete in cadeteria.ListaCadetes) {
+                        var pedido = cadete.ListadoPedidos.FirstOrDefault(p => p.Nro == nroPedidoEstado);
+                        if (pedido != null) {
+                            pedido.Estado = nuevoEstado;
+                            Console.WriteLine("Estado del pedido actualizado.");
+                        }
+                    }
+                    break;
+
+                case "4":
+                    Console.Write("Ingrese el número del pedido a reasignar: ");
+                    int nroPedidoReasignar = int.Parse(Console.ReadLine());
+                    Console.Write("Ingrese el ID del nuevo cadete: ");
+                    int idNuevoCadete = int.Parse(Console.ReadLine());
+
+                    cadeteria.ReasignarPedido(nroPedidoReasignar, idNuevoCadete);
+                    break;
+
+                case "5":
+                    cadeteria.GenerarInforme();
+                    break;
+
+                case "6":
+                    salir = true;
+                    break;
+
+                default:
+                    Console.WriteLine("Opción no válida.");
+                    break;
             }
         }
-        return cadetes;
-    }
-
-    static List<Cliente> CargarClientesDesdeCSV(string path)
-    {
-        List<Cliente> clientes = new List<Cliente>();
-        using (var reader = new StreamReader(path))
-        {
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                var values = line.Split(',');
-                clientes.Add(new Cliente(values[0], values[1], values[2], values[3]));
-            }
-        }
-        return clientes;
-    }
-
-    static void Main(string[] args)
-    {
-        
-        List<Cadete> cadetes = CargarCadetesDesdeCSV("cadetes.csv");
-        List<Cliente> clientes = CargarClientesDesdeCSV("clientes.csv");
-
-        Cadeteria cadeteria = new Cadeteria("MiCadeteria", "123456789");
-        cadeteria.ListaCadetes = cadetes;
-
-        
-        Pedido pedido1 = new Pedido(1, "Pedido urgente", clientes[0], "Pendiente");
-        cadeteria.ListaCadetes[0].AsignarPedido(pedido1);
-
-        
-        cadeteria.MostrarInforme();
     }
 }

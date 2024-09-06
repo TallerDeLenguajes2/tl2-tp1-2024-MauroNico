@@ -1,23 +1,16 @@
-public class Cadete
-{
+public class Cadete {
     public int Id { get; set; }
     public string Nombre { get; set; }
     public string Direccion { get; set; }
     public string Telefono { get; set; }
-    public List<Pedido> ListaPedidos { get; set; } = new List<Pedido>();
+    public List<Pedido> ListadoPedidos { get; set; }
 
-    public void AsignarPedido(Pedido pedido)
-    {
-        ListaPedidos.Add(pedido);
+    public Cadete() {
+        ListadoPedidos = new List<Pedido>();
     }
 
-    public void RemoverPedido(Pedido pedido)
-    {
-        ListaPedidos.Remove(pedido);
-    }
-
-    public int JornalACobrar()
-    {
-        return ListaPedidos.Count * 500;
+    public decimal JornalACobrar() {
+        // Asumimos que cada pedido entregado genera un jornal de $500
+        return ListadoPedidos.Count(p => p.Estado == "Entregado") * 500;
     }
 }
