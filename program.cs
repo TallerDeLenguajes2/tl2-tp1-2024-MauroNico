@@ -37,18 +37,18 @@ public class Program
 
     static void Main(string[] args)
     {
-        // Cargar datos desde CSV
+        
         List<Cadete> cadetes = CargarCadetesDesdeCSV("cadetes.csv");
         List<Cliente> clientes = CargarClientesDesdeCSV("clientes.csv");
 
         Cadeteria cadeteria = new Cadeteria("MiCadeteria", "123456789");
         cadeteria.ListaCadetes = cadetes;
 
-        // Operaciones: Alta de pedidos, asignación, cambio de estado, reasignación
+        
         Pedido pedido1 = new Pedido(1, "Pedido urgente", clientes[0], "Pendiente");
         cadeteria.ListaCadetes[0].AsignarPedido(pedido1);
 
-        // Mostrar informe final
+        
         cadeteria.MostrarInforme();
     }
 }
