@@ -10,7 +10,7 @@ public class Program {
         Cadeteria cadeteria = new Cadeteria();
         AccesoADatos accesoDatos;
 
-        // Solicitar tipo de acceso a datos (CSV o JSON)
+        
         Console.WriteLine("Seleccione el tipo de acceso a datos:");
         Console.WriteLine("1. CSV");
         Console.WriteLine("2. JSON");
@@ -30,11 +30,11 @@ public class Program {
                 break;
         }
 
-        // Cargar datos desde el archivo seleccionado
+        
         accesoDatos.CargarDatosCadeteria(cadeteria, "cadeteria.csv");
         accesoDatos.CargarCadetes(cadeteria, "cadetes.csv");
 
-        // Menú de opciones
+        
         bool salir = false;
         while (!salir) {
             Console.WriteLine("\nSistema de Gestión de Pedidos");
