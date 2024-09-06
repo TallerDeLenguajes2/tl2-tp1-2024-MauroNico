@@ -1,23 +1,25 @@
-
 public class Pedido
 {
-    public int NumPedidO {get;set;}
-    public string Obs {get;set;}
-    public Cliente Cliente {get;set;}
-    public State estado; 
+    public int Nro { get; set; }
+    public string Obs { get; set; }
+    public Cliente Cliente { get; set; }
+    public string Estado { get; set; }
 
-    public Pedido(int num, string obs, Cliente cliente, State estado){
-        NumPedidO=num;
-        Obs=obs;
-        Cliente=cliente;
-        this.estado = estado;
+    public Pedido(int nro, string obs, Cliente cliente, string estado)
+    {
+        Nro = nro;
+        Obs = obs;
+        Cliente = cliente;
+        Estado = estado;
     }
-    public string VerDireccionCliente(){
-        return Cliente.Direccion;
+
+    public void VerDireccionCliente()
+    {
+        Console.WriteLine($"Dirección del cliente: {Cliente.Direccion}");
     }
-    public string VerDatosCliente(){
-        return $"{Cliente.Nombre}, {Cliente.Telefono}, {Cliente.Direccion}";
-        
+
+    public void VerDatosCliente()
+    {
+        Console.WriteLine($"Datos del cliente: {Cliente.Nombre}, Tel: {Cliente.Telefono}, Dirección: {Cliente.Direccion}");
     }
 }
-

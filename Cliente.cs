@@ -1,14 +1,15 @@
 public class Cliente
 {
-    public string Nombre {get;set;}
-    public string Direccion {get;set;}
-    public string Telefono {get;set;}
-    public string Datosreferenciadireccion {get;set;}
+    public string Nombre { get; set; }
+    public string Direccion { get; set; }
+    public string Telefono { get; set; }
+    public string DatosReferenciaDireccion { get; set; }
 
-    public Cliente(string nombre, string direccion, string telefono, string datosreferencia){
+    public Cliente(string nombre, string direccion, string telefono, string datosReferencia)
+    {
         Nombre = nombre;
         Direccion = direccion;
         Telefono = telefono;
-        Datosreferenciadireccion = datosreferencia;
+        DatosReferenciaDireccion = datosReferencia;
     }
 }
