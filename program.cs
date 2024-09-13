@@ -20,20 +20,19 @@ public class Program {
         switch (opcionAcceso) {
             case "1":
                 accesoDatos = new AccesoCSV();
+                accesoDatos.CargarDatosCadeteria(cadeteria, "cadeteria.csv");
+                accesoDatos.CargarCadetes(cadeteria, "cadetes.csv");
                 break;
             case "2":
                 accesoDatos = new AccesoJSON();
+                accesoDatos.CargarDatosCadeteria(cadeteria, "cadeteria.json");
+                accesoDatos.CargarCadetes(cadeteria, "cadetes.json");
                 break;
             default:
                 Console.WriteLine("Opción no válida. Se utilizará CSV por defecto.");
                 accesoDatos = new AccesoCSV();
                 break;
         }
-
-        
-        accesoDatos.CargarDatosCadeteria(cadeteria, "cadeteria.csv");
-        accesoDatos.CargarCadetes(cadeteria, "cadetes.csv");
-
         
         bool salir = false;
         while (!salir) {
