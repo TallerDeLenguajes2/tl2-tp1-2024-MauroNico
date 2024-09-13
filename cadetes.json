@@ -1,3 +1,14 @@
-[[ 1,"Payasito Aimar","Calle Falsa 213",123456789],
-[ 1,"Titan Palermo","Calle Falsa 123",123456789],
-[ 1,"Pulga Rodriguez","Calle Falsa 321",123456789]]
+[
+    {
+      "Id": "1",
+      "Nombre": "Jorge",
+      "Direccion": "loma bola 123",
+      "Telefono": "987-654-3210"
+    },
+    {
+      "Id": "2",
+      "Nombre": "Felicitas",
+      "Direccion": "loma de tafi 123",
+      "Telefono": "654-321-0987"
+    }
+  ]

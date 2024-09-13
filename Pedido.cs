@@ -5,11 +5,11 @@ public class Pedido {
     public string Estado { get; set; } 
     public Cadete Cadete { get; set; } 
 
-    public void VerDireccionCliente() {
-        Console.WriteLine($"Dirección del cliente: {Cliente.Direccion}");
+    public string VerDireccionCliente() {
+        return this.Cliente.Direccion;
     }
 
-    public void VerDatosCliente() {
-        Console.WriteLine($"Datos del cliente: {Cliente.Nombre}, Tel: {Cliente.Telefono}");
+    public string VerDatosCliente() {
+        return this.Cliente.DatosReferenciaDireccion;
     }
 }
